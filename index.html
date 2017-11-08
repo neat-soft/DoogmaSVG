@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Text Logo Demo</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+<body>
+	<div class="partition">  <!-- Partition 1 -->
+		<form>
+            <label>Style</label>
+            <select name="style">
+                <option value="makemerch-circular">makemerch-circular</option>
+            </select>
+			<div class="style-panel">
+				<label>Options</label>
+				<div>
+					<div class="option-group">  <!-- Common Options -->
+						<div class="form-field">
+							<div class="label">
+							    <label>Text</label>
+							</div>
+							<input type="text" name="text" placeholder="Your Text Here" value="How are you?" />
+                        </div>
+                        <div class="form-field">
+                            <div class="label">
+                                    <label>Font Size</label>
+                            </div>
+                            <input type="number" min="1" max="100" name="font-size" value="48" />
+                        </div>
+						<div class="form-field">
+							<div class="label">
+							    <label>Font Family</label>
+							</div>
+							<input type="text" name="font-family" placeholder="Arial" value="Arial" />
+						</div>
+						<div class="form-field">
+							<div class="label">
+							    <label>Fill color</label>
+							</div>
+							<input type="color" name="fill" value="#ff0000" />
+						</div>
+						<div class="form-field">
+							<div class="label">
+							    <label>Outline</label>
+							</div>
+							<input type="color" name="stroke" value="#000000" />
+						</div>
+						<div class="form-field">
+							<div class="label">
+							    <label>Outline Width</label>
+							</div>
+							<input type="number" min="0" max="50" step="0.5" name="stroke-width" value="2" />
+						</div>
+						<div class="form-field">
+							<div class="label">
+							    <label>Letter Spacing</label>
+							</div>
+							<input type="number" min="0" max="10" step="0.5" name="letter-spacing" value="1" />
+						</div>
+						<div class="option-title">
+							<label>Container Options</label>
+						</div> 
+						 <div class="form-field">
+							<div class="label">
+								<label>Size</label>
+							</div>
+							<input type="number" name="width" min="0" max="2000" step="10" value="800"/>
+							<label>x</label>
+							<input type="number" name="height" min="0" max="1000" step="10" value="600"/>
+						</div> 
+					</div>
+					<div class="option-group">  
+						<!-- <div class="option-title">
+							<label>Circle Options</label>
+						</div> -->
+						
+						<div class="form-field">
+							<div class="label">
+								<label>Radius</label>
+							</div>
+							<input type="number" name="radius" min="0" max="1000" step="10" value="200"/>
+						</div>
+						<!-- <div class="form-field">
+							<div class="label">
+								<label>Rotation</label>
+							</div>
+							<input type="number" name="rotation" min="0" max="360" value="270"/>
+						</div> -->
+						<!-- <div class="form-field">
+							<div class="label">
+								<label>Direction</label>
+							</div>
+							<select name="direction">
+								<option value="clockwise">Clockwise</option>
+								<option value="anticlockwise">Anti-Clockwise</option>
+							</select>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>  <!-- End: Partition 1 -->
+	
+	<div id="text_svg" class="partition">  <!-- Partition 2 -->
+    </div>  <!-- End: Partition 2 -->
+    <!-- library  -->
+    <script src="js/library/d3/d3.js"></script>
+    <script src="js/library/jquery/jquery-3.2.1.min.js"></script>
+    <!-- library end -->
+
+    <script src="js/text.js"></script>
+    <script src="js/svg.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

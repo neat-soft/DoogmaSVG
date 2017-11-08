@@ -1,0 +1,48 @@
+body {
+	font-family: sans-serif;
+}
+
+.partition {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.partition:nth-child(2) {
+	margin-left: 20px;
+}
+
+label {
+	font-size: 10pt;
+}
+
+.style-panel {
+	margin-top: 10px;
+}
+
+.style-panel>div {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.form-field {
+	margin: 2px 0px;
+}
+
+.form-field label {
+	font-size: 9.5pt;
+}
+
+.option-group .option-title {
+	margin-top: 10px;
+	margin-bottom: 4px;
+	color: grey;
+}
+
+.option-title>label {
+	font-size: 8pt;
+}
+
+.option-group .label {
+	width: 90px;
+	display: inline-block;
+}
