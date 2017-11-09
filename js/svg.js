@@ -64,7 +64,7 @@ function renderSVG(data){
         .attr("y", sY)
         
 }
-
+console.log("get path");
 function getPathData() {
     // adjust the radius a little so our text's baseline isn't sitting directly on the circle
 
