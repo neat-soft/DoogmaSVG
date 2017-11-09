@@ -11,7 +11,6 @@ function createSVG(data){
     .attr("width", data['width'])
     .attr("height", data['height']);
 
-
     svg = d3.select("#doogmaTextSVG");
     var text = svg.append("text");
     if (data["style"] == "curved"){
@@ -30,10 +29,13 @@ function createSVG(data){
         .attr("y", sY)
         .attr("stroke", data["stroke"])
         .attr("stroke-width", data["stroke-width"])
+        .attr("stroke-linecap", "butt")
+        .attr("stroke-linejoin", "round")
         .attr("fill", data["fill"])
         .attr("paint-order","stroke");
 
 }
+
 function renderSVG(data){
     svgData = data;
     console.log(data);
@@ -60,6 +62,8 @@ function renderSVG(data){
         text.attr(property,data[property]);
     }
     text.attr("paint-order","stroke")
+        .attr("stroke-linecap", "butt")
+        .attr("stroke-linejoin", "round")
         .attr("x", sX)
         .attr("y", sY)
         
