@@ -1,5 +1,7 @@
 var svg;
 var svgData;
+var sX = 200;
+var sY = 200
 function createSVG(data){
     svgData = data;
      d3.select("#text_svg")
@@ -24,8 +26,8 @@ function createSVG(data){
         .attr("font-family", data["font-family"])
         .attr("font-weight", "bold")
         .attr("font-size", data["font-size"])
-        .attr("x", 100)
-        .attr("y", 100)
+        .attr("x", sX)
+        .attr("y", sY)
         .attr("stroke", data["stroke"])
         .attr("stroke-width", data["stroke-width"])
         .attr("fill", data["fill"])
@@ -58,8 +60,8 @@ function renderSVG(data){
         text.attr(property,data[property]);
     }
     text.attr("paint-order","stroke")
-        .attr("x", 100)
-        .attr("y", 100)
+        .attr("x", sX)
+        .attr("y", sY)
         
 }
 
