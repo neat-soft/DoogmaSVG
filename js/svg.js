@@ -11,21 +11,25 @@ function createSVG(data){
 
 
     svg = d3.select("#doogmaTextSVG");
-   
-    var textPath = svg.append("defs").append("path")
+    var text = svg.append("text");
+    if (data["style"] == "curved"){
+        var textPath = svg.append("defs").append("path")
         .attr("id", "textPath")
         .attr("d", getPathData);
-    svg.append("text").append("textPath")
-	    .attr("xlink:href", "#textPath")
-        .text(data["text"])
+        text = text.append("textPath")
+	    .attr("xlink:href", "#textPath");
+    }
+    
+    text.text(data["text"])
         .attr("font-family", data["font-family"])
         .attr("font-weight", "bold")
         .attr("font-size", data["font-size"])
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("fill", data["fill"])
+        .attr("x", 100)
+        .attr("y", 100)
         .attr("stroke", data["stroke"])
-        .attr("stroke-width", data["stroke-width"]);
+        .attr("stroke-width", data["stroke-width"])
+        .attr("fill", data["fill"])
+        .attr("paint-order","stroke");
 
 }
 function renderSVG(data){
@@ -33,14 +37,29 @@ function renderSVG(data){
     console.log(data);
     svg = d3.select("#doogmaTextSVG");
     svg.attr("width",data["width"])
-        .attr("height",data["height"])
-    var textPath = d3.select("#textPath");
-    textPath.attr("d",getPathData);
-    var text = d3.select("textPath");
-    text.text(data["text"]);
+        .attr("height",data["height"]);
+    d3.select("text").remove();
+    var text = svg.append("text");
+    if (data["style"] == "curved"){
+        var textPath = d3.select("path");
+        console.log(textPath);
+        if (textPath == null)
+            {
+                textPath = svg.append("defs").append("path").attr("id","textPath");
+            }
+        textPath.attr("id","textPath")
+                .attr("d", getPathData);
+        text = text.append("textPath")
+	    .attr("xlink:href", "#textPath");
+    }
+    
+    text.text(data["text"]); 
     for (var property in data) {
         text.attr(property,data[property]);
     }
+    text.attr("paint-order","stroke")
+        .attr("x", 100)
+        .attr("y", 100)
         
 }
 
