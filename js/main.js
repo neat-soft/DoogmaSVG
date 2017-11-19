@@ -24,7 +24,7 @@
     }
     
     function render(data) {
-        renderSVG(data);
+         renderText(data);
     }
 })();
 
@@ -35,5 +35,5 @@ $(document).ready(function() {
         var _option = options[i];
         data[_option.name] = _option.value || _option.placeholder || _option.value;
     }
-    createSVG(data);
+    createText(data);
 });

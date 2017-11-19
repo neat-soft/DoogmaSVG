@@ -11,8 +11,8 @@
 		<form>
             <label>Style</label>
             <select name="style">
-				<option value="curved">curved</option>
 				<option value="straight">straight</option>
+				<option value="curved">curved</option>
             </select>
 			<div class="style-panel">
 				<label>Options</label>
@@ -22,13 +22,13 @@
 							<div class="label">
 							    <label>Text</label>
 							</div>
-							<input type="text" name="text" placeholder="Your Text Here" value="How are you?" />
+							<input type="text" name="text" placeholder="Your Text Here" value="Sample Text" />
                         </div>
                         <div class="form-field">
                             <div class="label">
                                     <label>Font Size</label>
                             </div>
-                            <input type="number" min="1" max="100" name="font-size" value="50" />
+                            <input type="number" min="1" max="100" name="font-size" value="64" />
                         </div>
 						<div class="form-field">
 							<div class="label">
@@ -46,7 +46,7 @@
 							<div class="label">
 							    <label>Outline</label>
 							</div>
-							<input type="color" name="stroke" value="#000000" />
+							<input type="color" name="stroke" value="#222222" />
 						</div>
 						<div class="form-field">
 							<div class="label">
@@ -54,53 +54,78 @@
 							</div>
 							<input type="number" min="0" max="50" step="0.5" name="stroke-width" value="3" />
 						</div>
-						<div class="form-field">
-							<div class="label">
-							    <label>Letter Spacing</label>
-							</div>
-							<input type="number" min="0" max="10" step="0.5" name="letter-spacing" value="1" />
-						</div>
+						
 						<div class="option-title">
 							<label>Container Options</label>
 						</div> 
-						 <div class="form-field">
+						 <!-- <div class="form-field">
 							<div class="label">
 								<label>Size</label>
 							</div>
 							<input type="number" name="width" min="0" max="2000" step="10" value="800"/>
 							<label>x</label>
 							<input type="number" name="height" min="0" max="1000" step="10" value="600"/>
-						</div> 
+						</div>  -->
 					</div>
 					<div class="option-group">  
-						<!-- <div class="option-title">
-							<label>Circle Options</label>
-						</div> -->
 						<div class="form-field">
 							<div class="label">
 								<label>Radius</label>
 							</div>
 							<input type="number" name="radius" min="0" max="1000" step="10" value="200"/>
 						</div>
+					</div>
+					<div class="option-group">
+						<div class="option-title">
+							<label>Curve Option</label>
+						</div>
+						<div class="label">
+							<label>Base Line:</label>
+						</div>
+						<select name="baseline">
+							<option value="top">Top</option>
+							<option value="bottom">Bottom</option>
+						</select>
+
+						<div class="form-field">
+							<div class="label">
+							    <label>Curve:</label>
+							</div>
+							<input name="curve" type="range" min=0 max=200 value=100 />
+							<span id="vCurve">110</span>						
+						</div>
+						
 						<!-- <div class="form-field">
 							<div class="label">
-								<label>Rotation</label>
+							    <label>Bottom:</label>
 							</div>
-							<input type="number" name="rotation" min="0" max="360" value="270"/>
+							<input name="bottom" type="range" min=0 max=200 value=200 />
+							<span id="vBottom">200</span>						
 						</div> -->
-						<!-- <div class="form-field">
-							<div class="label">
-								<label>Direction</label>
-							</div>
-							<select name="direction">
-								<option value="clockwise">Clockwise</option>
-								<option value="anticlockwise">Anti-Clockwise</option>
-							</select>
-						</div> -->
+
 					</div>
 				</div>
 			</div>
 		</form>
+	
+	<!-- <br>
+	<span>Curve:</span>
+	<input id="iCurve" type="range" min=0 max=200 value=110>
+	<span id="vCurve">110</span>
+		<br><span>OffsetY:</span>
+	<input id="iOffset" type="range" min=0 max=100 value=4>
+	<span id="vOffset">0</span>
+		<br><span>Text height:</span>
+	<input id="iHeight" type="range" min=0 max=200 value=64>
+	<span id="vHeight">64</span>
+		<br><span>Bottom:</span>
+	<input id="iBottom" type="range" min=0 max=200 value=200>
+	<span id="vBottom">200</span>
+		<br><span>Triangle:</span>
+		<input id="iTriangle" type="checkbox">
+	<br><span>Text:</span>
+	<input id="iText" type="text" value="Sample text"> -->
+	
 	</div>  <!-- End: Partition 1 -->
 	
 	<div id="text_svg" class="partition">  <!-- Partition 2 -->
@@ -110,7 +135,7 @@
     <script src="js/library/jquery/jquery-3.2.1.min.js"></script>
     <!-- library end -->
 
-    <script src="js/text.js"></script>
+    <!-- <script src="js/text.js"></script> -->
     <script src="js/svg.js"></script>
     <script src="js/main.js"></script>
     

@@ -1,0 +1,69 @@
+var svg;
+var svgData;
+var sX = 100;
+var sY = 200
+function arc(){
+    var outerArc = d3.arc()
+    .innerRadius(0)
+    .outerRadius(svgData["radius"])
+    .startAngle(Math.PI*3/2)
+    .endAngle(Math.PI/2);
+
+  }
+function arc_position(x, y, radius, angle) {
+    return {
+      x: x + (radius * Math.cos(angle)),
+      y: y + (radius * Math.sin(angle))
+    };
+  }
+function describe_arc(x, y, radius, startAngle, endAngle) {
+    
+          var s = arc_position(x, y, radius, startAngle);
+          var e = arc_position(x, y, radius, endAngle);
+    
+          var sweep = e - s <= 180 ? '0' : '1';
+    
+          var d = [
+            'M', s.x, s.y,
+            'A', radius, radius, 0, 1, 1, e.x, e.y
+          ].join(' ');
+        //   return 'M 100,300 A 200,200 0 0,1 400,300';
+        return 'M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,9';
+          //return d;
+}
+
+function createNativeSVG(data){
+    // SVG
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    /*svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    svg.setAttribute('xmlns:xlink','http://www.w3.org/1999/xlink');
+    svg.setAttribute('width',data['width']);
+    svg.setAttribute('height',data['height']);
+    svg.setAttribute('id','SVGTextLogo');
+    // TEXT
+
+    var defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+    var path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    svg.appendChild(defs);
+    path.setAttributeNS(null,'id','ctextpath');
+    path.setAttributeNS(null,'d','M 100,300 A 200,200 0 0,1 400,300');
+    defs.appendChild(path);
+    var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttributeNS(null,'id','TextLogo');
+    text.setAttributeNS(null,'x', sX);
+    text.setAttributeNS(null,'y', sY);
+    for (var property in data) {
+        text.setAttributeNS(null,property,data[property]);
+    }
+    text.setAttributeNS(null,"stroke-linecap", "butt");
+    text.setAttributeNS(null,"stroke-linejoin", "round");
+    text.setAttributeNS(null,"vector-effect","non-scaling-stroke");
+    text.setAttributeNS(null,"fill", data["fill"]);
+    text.setAttributeNS(null,"paint-order","stroke");
+    svg.appendChild(text); 
+    var textpath = document.createElementNS('http://www.w3.org/2000/svg','textPath');
+    textpath.setAttributeNS('http://www.w3.org/1999/xlink',"xlink:href", "#ctextpath");
+    textpath.textContent =data["text"];
+    text.appendChild(textpath);*/
+  
+}

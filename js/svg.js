@@ -1,112 +1,71 @@
-var svg;
-var svgData;
-var sX = 200;
-var sY = 400
-function createSVG(data){
-    svgData = data;
-     d3.select("#text_svg")
-    .append("svg")
-    .attr("id","doogmaTextSVG")
-    // .attr("style", "outline: thin solid red;")   //This will do the job
-    .attr("width", data['width'])
-    .attr("height", data['height']);
+var canv = document.createElement('canvas');    
+canv.setAttributeNS(null,'id','arctext');
+canv.setAttributeNS(null,'width',500);
+canv.setAttributeNS(null,'height',400);
+var ctx = canv.getContext('2d'),
+    font = '64px impact',
+    strokFont = '64px impact',
+    w = canv.width,
+    h = canv.height,
+    offsetY,
+    curve,
+    textHeight,
+    bottom=200,
+    angleSteps = 180 / w,
+    i = w,
+    y,
+    os = document.createElement('canvas'),
+    octx = os.getContext('2d');
 
-    // var s = arc_position(sX, sY, svgData["radius"], Math.PI/2);
-    // var e = arc_position(sX, sY, svgData["radius"], (Math.PI * 3)/2);
-
-    svg = d3.select("#doogmaTextSVG");
-    var text = svg.append("text");
-    if (data["style"] == "curved"){
-        var textPath = svg.append("defs").append("path")
-        .attr("id", "textPath")
-        .attr("d", describe_arc(sX,sY,svgData["radius"],(Math.PI * 3)/2, (Math.PI * 1)/2));        
-        text = text.append("textPath")
-	    .attr("xlink:href", "#textPath");
-    }
-    
-    text.text(data["text"])
-        .attr("font-family", data["font-family"])
-        .attr("font-weight", "bold")
-        .attr("font-size", data["font-size"])
-        .attr("x", sX)
-        .attr("y", sY)
-        .attr("stroke", data["stroke"])
-        .attr("stroke-width", data["stroke-width"])
-        .attr("stroke-linecap", "butt")
-        .attr("stroke-linejoin", "round")
-        .attr("vector-effect","non-scaling-stroke")
-        .attr("fill", data["fill"])
-        .attr("paint-order","stroke")
-        .attr("transform", "translate(200,200)");
+function createText(data){
+    // w = data['width'];
+    // h = data['height'];
+    os.width = w;
+    os.height = h;
+    font = data['font-size'] + 'px' +' ' + data['font-family']
+    octx.font = font;
+    octx.textBaseline = data['baseline'];
+    octx.strokeStyle = data['stroke'];
+    octx.fillStyle = data['fill'];
+    octx.textAlign = 'center';
+    document.getElementById("text_svg").appendChild(canv); 
+    renderText(data);
 }
-
-function renderSVG(data){
-    svgData = data;
-    console.log(data);
-    svg = d3.select("#doogmaTextSVG");
-    svg.attr("width",data["width"])
-        .attr("height",data["height"]);
-    d3.select("text").remove();
-    var text = svg.append("text");
-    if (data["style"] == "curved"){
-        var textPath = d3.select("path");
-        console.log(textPath);
-        if (textPath == null)
-            {
-                textPath = svg.append("defs").append("path").attr("id","textPath");
-            }
-        textPath.attr("id","textPath")
-        .attr("d", describe_arc(sX,sY,200,(Math.PI * 3)/2, (Math.PI * 3)/1));        
-        text = text.append("textPath")
-	    .attr("xlink:href", "#textPath");
-    }
-    
-    text.text(data["text"]); 
-    for (var property in data) {
-        text.attr(property,data[property]);
-    }
-    text.attr("paint-order","stroke")
-        .attr("stroke-linecap", "butt")
-        .attr("stroke-linejoin", "round")
-        .attr("vector-effect","non-scaling-stroke")
-        .attr("x", sX)
-        .attr("y", sY)
-        .attr("transform", "translate(200,200)");
-        
-}
-console.log("get path");
-function getPathData() {
-    // adjust the radius a little so our text's baseline isn't sitting directly on the circle
-
-    /*var r = svgData["radius"] * 0.8;
-    var startX = svgData["width"]/4;
-    var height = 200;
-    // return 'm' + startX + ',' + (height/2) + ' ' +
-    //   'a' + r + ',' + r + ' 0 0 0 ' + (2*r) + ',0';
-    return 'M ' + startX + ' ' + (height/2) + ' ' +
-    'q ' + (startX+r) + ' ' + (-r) + ' ' + (startX+2*r) + ' ' + (height*2);*/
-
-
-  }
-
-  function arc_position(x, y, radius, angle) {
-    return {
-      x: x + (radius * Math.cos(angle)),
-      y: y + (radius * Math.sin(angle))
-    };
-  }
-
-  function describe_arc(x, y, radius, startAngle, endAngle) {
-    
-          var s = arc_position(x, y, radius, startAngle);
-          var e = arc_position(x, y, radius, endAngle);
-    
-          var sweep = e - s <= 180 ? '0' : '1';
-    
-          var d = [
-            'M', s.x, s.y,
-            'A', radius, radius, 0, 1, 1, e.x, e.y
-          ].join(' ');
-          return 'M 100,300 A 200,200 0 0,1 400,300';
-          //return d;
-}
+function renderText(data) {
+        console.log(data);
+        curve = parseInt(data['curve'],10);
+        // bottom = parseInt(data['bottom'],10);
+        textHeight = parseInt(data['font-size'],10);
+        vCurve.innerHTML = curve;
+        // vBottom.innerHTML = bottom;
+        // w = data['width'];
+        // h = data['height'];
+        octx.clearRect(0, 0, w, h);
+        ctx.clearRect(0, 0, w, h);
+        if (data['baseline'] == 'top') {
+            offsetY = 15;
+        }
+        else{
+            offsetY = 64;
+        }
+        font = data['font-size'] + 'px' +' ' + data['font-family']
+        octx.font = font;
+        octx.strokeStyle = data['stroke'];
+        octx.fillStyle = data['fill'];
+        octx.fillText(data['text'].toUpperCase(), w * 0.5, 0);
+        // strokeFont = parseInt(data['font-size'],10) + parseInt(data['stroke-width'],10) + 'px' +' ' + data['font-family']
+        // octx.font = strokeFont;
+        // console.log(strokeFont);
+        octx.stroke();
+        // octx.strokeText(data['text'].toUpperCase(),w * 0.5, 0);
+        /// slide and dice
+        i = w;
+        y = 0;
+        while (i--) {
+            y = bottom - curve * Math.sin(i * angleSteps * Math.PI / 180);
+            console.log(y);
+            ctx.drawImage(os, i, 0, 1, textHeight,i, h * 0.5 - offsetY / textHeight * y, 1, y);
+        }
+        // ctx.drawImage(os, 0, 0, w,h);
+ } 
+ 
