@@ -1,7 +1,7 @@
 var canv = document.createElement('canvas');    
 canv.setAttributeNS(null,'id','arctext');
-canv.setAttributeNS(null,'width',500);
-canv.setAttributeNS(null,'height',400);
+canv.setAttributeNS(null,'width',800);
+canv.setAttributeNS(null,'height',600);
 var ctx = canv.getContext('2d'),
     font = '64px impact',
     strokFont = '64px impact',
@@ -34,12 +34,8 @@ function createText(data){
 function renderText(data) {
         console.log(data);
         curve = parseInt(data['curve'],10);
-        // bottom = parseInt(data['bottom'],10);
         textHeight = parseInt(data['font-size'],10);
         vCurve.innerHTML = curve;
-        // vBottom.innerHTML = bottom;
-        // w = data['width'];
-        // h = data['height'];
         octx.clearRect(0, 0, w, h);
         ctx.clearRect(0, 0, w, h);
         if (data['baseline'] == 'top') {
@@ -50,15 +46,17 @@ function renderText(data) {
         }
         font = data['font-size'] + 'px' +' ' + data['font-family']
         octx.font = font;
+        octx.lineCap="round";        
+        octx.lineJoin="round";        
         octx.strokeStyle = data['stroke'];
+        octx.lineWidth = data['stroke-width'];
+        octx.strokeText(data['text'].toUpperCase(),w * 0.5, 0);
+
+        
         octx.fillStyle = data['fill'];
         octx.fillText(data['text'].toUpperCase(), w * 0.5, 0);
-        // strokeFont = parseInt(data['font-size'],10) + parseInt(data['stroke-width'],10) + 'px' +' ' + data['font-family']
-        // octx.font = strokeFont;
-        // console.log(strokeFont);
-        octx.stroke();
-        // octx.strokeText(data['text'].toUpperCase(),w * 0.5, 0);
         /// slide and dice
+        // stroke color
         i = w;
         y = 0;
         while (i--) {
@@ -66,6 +64,5 @@ function renderText(data) {
             console.log(y);
             ctx.drawImage(os, i, 0, 1, textHeight,i, h * 0.5 - offsetY / textHeight * y, 1, y);
         }
-        // ctx.drawImage(os, 0, 0, w,h);
  } 
  
