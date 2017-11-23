@@ -13,7 +13,7 @@ var ctx = canv.getContext('2d'),
     curve,
     textHeight,
     bottom=300,
-    angleSteps = 180 / w,
+    angleSteps = 180 / (w*10),
     i = w,
     y,
     startYPos = 200,
@@ -69,18 +69,19 @@ function renderText(data) {
         var rate1 = 0.8 - (100 - parseInt(data['font-size'], 10) * 1.0) / 72.0 * 0.125;
         var rate2 = 0.56 - (100 - parseInt(data['font-size'], 10) * 1.0) / 72.0 * 0.415 + (12 - parseInt(data['font-size'], 10) * 1.0) * 0.07 / 88;
         console.log(rate1, rate2);
-        
+        var xstep =0.1;
         while (i>0) {
-            i -=0.2
+
+            i -=xstep;
             if (data['baseline'] == 'top'){
                 y = otH - curve * Math.sin(i * angleSteps * Math.PI / 180);
-                ctx.drawImage(os, i + offset, 0, 0.2, textHeight,i + offset, startYPos , 0.2, y);
+                ctx.drawImage(os, i + offset, 0, xstep, textHeight,i + offset, startYPos , xstep, y);
             }
             else if (data['baseline'] == 'bottom')
             {   
                 y = curve * Math.sin(i * angleSteps * Math.PI / 180) * rate1;
                 cy = curve * Math.sin(i * angleSteps * Math.PI / 180) * rate2;
-                ctx.drawImage(os, i + offset, 0, 0.2, textHeight,i + offset, cy+startYPos  , 0.2,200 - y);
+                ctx.drawImage(os, i + offset, 0, xstep, textHeight,i + offset, cy+startYPos  , xstep,200 - y);
             }
         }
  } 
