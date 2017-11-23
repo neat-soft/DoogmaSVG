@@ -71,16 +71,16 @@ function renderText(data) {
         console.log(rate1, rate2);
         
         while (i>0) {
-            i -=0.3
+            i -=0.2
             if (data['baseline'] == 'top'){
                 y = otH - curve * Math.sin(i * angleSteps * Math.PI / 180);
-                ctx.drawImage(os, i + offset, 0, 0.3, textHeight,i + offset, startYPos , 0.3, y);
+                ctx.drawImage(os, i + offset, 0, 0.2, textHeight,i + offset, startYPos , 0.2, y);
             }
             else if (data['baseline'] == 'bottom')
             {   
                 y = curve * Math.sin(i * angleSteps * Math.PI / 180) * rate1;
                 cy = curve * Math.sin(i * angleSteps * Math.PI / 180) * rate2;
-                ctx.drawImage(os, i + offset, 0, 0.3, textHeight,i + offset, cy+startYPos  , 0.3,200 - y);
+                ctx.drawImage(os, i + offset, 0, 0.2, textHeight,i + offset, cy+startYPos  , 0.2,200 - y);
             }
         }
  } 
