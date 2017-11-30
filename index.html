@@ -52,7 +52,7 @@
 							<div class="label">
 							    <label>Outline Width</label>
 							</div>
-							<input type="number" min="0" max="30" step="0.5" name="stroke-width" value="3" />
+							<input type="number" min="0" max="30" step="0.5" name="stroke-width" value="0" />
 						</div>
 						
 						<div class="option-title">
@@ -91,19 +91,32 @@
 							<div class="label">
 							    <label>Curve:</label>
 							</div>
-							<input name="curve" type="range" min=0 max=200 value=100 />
+							<input name="curve" type="range" min=0 max=200 value=0 />
 							<span id="vCurve">110</span>						
 						</div>
-						
-						<!-- <div class="form-field">
-							<div class="label">
-							    <label>Bottom:</label>
-							</div>
-							<input name="bottom" type="range" min=0 max=200 value=200 />
-							<span id="vBottom">200</span>						
-						</div> -->
-
 					</div>
+					<!-- EMBOSSE -->
+					<div class="option-group">
+						
+						<div class="option-title">
+							<label>Emboss</label>
+						</div>
+						<div class="label">
+							<label>Direction:</label>
+						</div>
+						<select name="shadow-direction">
+							<option value="top">Top</option>
+							<option value="bottom">Bottom</option>
+						</select>
+						<div class="form-field">
+							<div class="label">
+							    <label>Emboss:</label>
+							</div>
+							<input name="emboss" type="range" step="0.1" min=0 max=2 value=0 />
+							<span id="vEmboss">0</span>						
+						</div>
+					</div>
+					<!-- /EMBOSS -->
 				</div>
 			</div>
 		</form>	

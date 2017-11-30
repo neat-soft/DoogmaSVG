@@ -37,8 +37,11 @@ function createText(data){
 function renderText(data) {
         console.log(data);
         curve = parseInt(data['curve'],10);
+        emboss = parseFloat(data['emboss']);
+
         textHeight = parseInt(data['font-size'],10) * 3 + 50;
         vCurve.innerHTML = curve;
+        vEmboss.innerHTML = emboss;
         octx.clearRect(0, 0, w, h);
         ctx.clearRect(0, 0, w, h);
         if (data['baseline'] == 'top') {
@@ -48,14 +51,41 @@ function renderText(data) {
             offsetY = 64;
         }
         font = data['font-size'] + 'pt' +' ' + data['font-family']
+      
+
         octx.font = font;
         octx.lineCap="round";        
         octx.lineJoin="round";        
         octx.strokeStyle = data['stroke'];
         octx.lineWidth = data['stroke-width'];
-        octx.strokeText(data['text'],w * 0.5, 0);
+        /* Emboss */
+        if (data['shadow-direction'] =="bottom"){
+            emboss = -emboss;
+        }
+        /* /Emboss */
+        octx.shadowColor = "#ffffff";
+        octx.shadowOffsetX = emboss; 
+        octx.shadowOffsetY = emboss; 
         octx.fillStyle = data['fill'];
         octx.fillText(data['text'], w * 0.5, 0);
+
+        octx.shadowColor = "#000000";
+        octx.shadowOffsetX = -emboss; 
+        octx.shadowOffsetY = -emboss; 
+        octx.fillStyle = data['fill'];
+        octx.fillText(data['text'], w * 0.5, 0);
+        /* /Emboss */
+
+        /* Outline */
+        octx.lineWidth = data['stroke-width'];
+        octx.strokeText(data['text'],w * 0.5, 0);
+        /* /Outline */
+        octx.fillStyle = data['fill'];
+        octx.fillText(data['text'], w * 0.5, 0);
+
+
+        
+        
         let otW = octx.measureText(data['text']).width + data['stroke-width'] * 2;
         angleSteps = 180 / otW;
         let offset = (w - otW) / 2;
@@ -70,6 +100,8 @@ function renderText(data) {
         var rate2 = 0.56 - (100 - parseInt(data['font-size'], 10) * 1.0) / 72.0 * 0.415 + (12 - parseInt(data['font-size'], 10) * 1.0) * 0.07 / 88;
         console.log(rate1, rate2);
         var xstep =0.1;
+        ctx.fillStyle = "#333333";
+        ctx.fillRect(0, 0, w, h);
         while (i>0) {
 
             i -=xstep;
@@ -81,6 +113,7 @@ function renderText(data) {
             {   
                 y = curve * Math.sin(i * angleSteps * Math.PI / 180) * rate1;
                 cy = curve * Math.sin(i * angleSteps * Math.PI / 180) * rate2;
+              
                 ctx.drawImage(os, i + offset, 0, xstep, textHeight,i + offset, cy+startYPos  , xstep,200 - y);
             }
         }
