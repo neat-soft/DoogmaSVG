@@ -38,7 +38,7 @@ function renderText(data) {
         console.log(data);
         curve = parseInt(data['curve'],10);
         emboss = parseFloat(data['emboss']);
-
+        var emboss2=-1;
         textHeight = parseInt(data['font-size'],10) * 3 + 50;
         vCurve.innerHTML = curve;
         vEmboss.innerHTML = emboss;
@@ -57,28 +57,33 @@ function renderText(data) {
         octx.lineCap="round";        
         octx.lineJoin="round";        
         octx.strokeStyle = data['stroke'];
-        octx.lineWidth = data['stroke-width'];
+        //octx.lineWidth = data['stroke-width'];
         /* Emboss */
         if (data['shadow-direction'] =="bottom"){
             emboss = -emboss;
+            emboss2 = 1
         }
         /* /Emboss */
-        octx.shadowColor = "#ffffff";
+        octx.strokeStyle = '#111111';
+        octx.shadowColor = "#aaaaaa";
         octx.shadowOffsetX = emboss; 
-        octx.shadowOffsetY = emboss; 
+        octx.shadowOffsetY = 1; 
         octx.fillStyle = data['fill'];
         octx.fillText(data['text'], w * 0.5, 0);
 
-        octx.shadowColor = "#000000";
-        octx.shadowOffsetX = -emboss; 
-        octx.shadowOffsetY = -emboss; 
+        octx.shadowColor = "#111111";
+        octx.shadowOffsetX = emboss2; 
+        octx.shadowOffsetY = emboss2; 
         octx.fillStyle = data['fill'];
         octx.fillText(data['text'], w * 0.5, 0);
         /* /Emboss */
-
+        if (emboss == 0){
+            console.log("outline");
         /* Outline */
         octx.lineWidth = data['stroke-width'];
+        octx.strokeStyle = data['stroke'];
         octx.strokeText(data['text'],w * 0.5, 0);
+        }
         /* /Outline */
         octx.fillStyle = data['fill'];
         octx.fillText(data['text'], w * 0.5, 0);
